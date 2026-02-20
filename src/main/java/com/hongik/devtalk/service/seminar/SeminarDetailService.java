@@ -89,27 +89,5 @@ public class SeminarDetailService {
         }
 
 
-    //연사 검색
-    public List<SpeakerSearchResponseDto> searchSpeakers(String keyword) {
-        //키워드 받아와서 세미나 검색
-
-        List<Speaker> speakers;
-
-        //만약에 키워드가 비어있으면 전체 조회
-        if(keyword ==null || keyword.isEmpty())
-        {  speakers = speakerRepository.findAll();
-        }
-        else{
-            //키워드포함 세미나 검색
-            speakers = speakerRepository.findByNameContaining(keyword);
-        }
-
-        //엔티티 리스트 -> dto 리스트로 변환 !
-        return speakers.stream()
-                .map(SpeakerSearchResponseDto::from)
-                .collect(Collectors.toList());
-
-    }
-
 
 }
