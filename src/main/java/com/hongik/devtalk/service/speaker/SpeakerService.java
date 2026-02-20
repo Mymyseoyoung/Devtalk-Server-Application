@@ -10,7 +10,7 @@ import com.hongik.devtalk.repository.speaker.SpeakerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,12 +30,11 @@ public class SpeakerService {
         List<Speaker> speakers;
 
         //만약에 키워드가 비어있으면 전체 조회
-        if(keyword ==null || keyword.isEmpty())
-        {  speakers = speakerRepository.findAll();
-        }
-        else{
-            //키워드포함 세미나 검색
-            speakers = speakerRepository.findByNameContaining(keyword);
+        if (keyword == null || keyword.isBlank()) {
+            speakers = speakerRepository.findAll();
+        } else {
+            //공백 앞뒤까지 체크
+            speakers = speakerRepository.findByNameContaining(keyword.trim());
         }
 
         //엔티티 리스트 -> dto 리스트로 변환 !
@@ -51,7 +50,7 @@ public class SpeakerService {
 
         List<Speaker> speakers=speakerRepository.findAll();
 
-        if(speakerRepository.findAll().isEmpty())
+        if(speakers.isEmpty())
         {
             throw new GeneralException(GeneralErrorCode.SPEAKER_NOT_FOUND);
         }
@@ -66,7 +65,7 @@ public class SpeakerService {
 
     //연사 상세정보 조회
 
-    public SpeakerDetailResponseDto getSpeakerDetails(@PathVariable Long speakerId) {
+    public SpeakerDetailResponseDto getSpeakerDetails(Long speakerId) {
 
         // 연사 조회
         Speaker speaker = speakerRepository.findById(speakerId)
