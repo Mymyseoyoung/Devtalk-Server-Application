@@ -1,5 +1,4 @@
-package com.hongik.devtalk.domain.seminar.detail.dto;
-
+package com.hongik.devtalk.domain.speaker.dto;
 
 import com.hongik.devtalk.domain.Speaker;
 import lombok.*;
@@ -10,20 +9,22 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class SpeakerSearchResponseDto {
+public class SpeakerDetailResponseDto {
 
     private Long speakerId;
     private String speakerName;
     private String organization;
+    //이력
+    private String history;
     private String profileUrl;
 
-    //entity -> DTO 변환
 
-    public static SpeakerSearchResponseDto from(Speaker speaker) {
-        return SpeakerSearchResponseDto.builder()
+    public static SpeakerDetailResponseDto from(Speaker speaker) {
+        return SpeakerDetailResponseDto.builder()
                 .speakerId(speaker.getId())
                 .speakerName(speaker.getName())
                 .organization(speaker.getOrganization())
+                .history(speaker.getHistory())
                 .profileUrl(speaker.getProfileUrl())
                 .build();
     }
