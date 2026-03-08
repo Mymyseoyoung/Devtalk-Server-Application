@@ -36,6 +36,10 @@ public class Seminar {
 
     private String topic;
 
+    private String subtitle;
+
+    private String description;
+
     //세미나가 진행되는 시간
     private LocalDateTime seminarDate;
 
@@ -71,12 +75,14 @@ public class Seminar {
     @OneToMany(mappedBy = "seminar", cascade = CascadeType.ALL)
     private List<Remind> reminds = new ArrayList<>();
 
-    public void updateInfo(Integer seminarNum, LocalDateTime seminarDate, String place, String topic,
-                           LocalDateTime applyStartDate, LocalDateTime applyEndDate) {
+    public void updateInfo(Integer seminarNum, LocalDateTime seminarDate, String place, String topic, String subtitle, String description
+            ,LocalDateTime applyStartDate, LocalDateTime applyEndDate) {
         this.seminarNum = seminarNum;
         this.seminarDate = seminarDate;
         this.place = place;
         this.topic = topic;
+        this.subtitle = subtitle;
+        this.description = description;
         this.startDate = applyStartDate;
         this.endDate = applyEndDate;
     }

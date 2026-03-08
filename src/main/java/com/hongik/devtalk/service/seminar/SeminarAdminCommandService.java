@@ -78,6 +78,8 @@ public class SeminarAdminCommandService {
         Seminar seminar = Seminar.builder()
                 .seminarNum(request.getSeminarNum())
                 .topic(request.getTopic())
+                .subtitle(request.getSubtitle())
+                .description(request.getDescription())
                 .seminarDate(request.getSeminarDate())
                 .place(request.getPlace())
                 .startDate(request.getApplyStartDate())
@@ -148,6 +150,7 @@ public class SeminarAdminCommandService {
                     .speaker(speaker)
                     .title(sp.getSessionTitle())
                     .description(sp.getSessionContent())
+                    .tags(sp.getSessionTags())
                     .build();
             sessionRepository.save(session);
             sessions.add(session);
@@ -181,6 +184,8 @@ public class SeminarAdminCommandService {
                 request.getSeminarDate(),
                 request.getPlace(),
                 request.getTopic(),
+                request.getSubtitle(),
+                request.getDescription(),
                 request.getApplyStartDate(),
                 request.getApplyEndDate()
         );
@@ -206,7 +211,7 @@ public class SeminarAdminCommandService {
                     .orElseThrow(() -> new GeneralException(GeneralErrorCode.SESSION_NOT_FOUND));
 
             speaker.updateInfo(spReq.getName(), spReq.getOrganization(), spReq.getHistory());
-            session.updateInfo(spReq.getSessionTitle(), spReq.getSessionContent());
+            session.updateInfo(spReq.getSessionTitle(), spReq.getSessionContent(), spReq.getSessionTags());
         }
 
         // 응답 DTO 생성

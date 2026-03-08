@@ -35,6 +35,14 @@ public class SeminarUpdateRequestDTO {
     @Schema(description = "세미나 주제", example = "AI와 미래 사회")
     private String topic;
 
+    @NotBlank
+    @Schema(description = "세미나 소제목", example= "인공지능이 바꾸는 산업과 우리의 삶")
+    private String subtitle;
+
+    @NotBlank
+    @Schema(description = "세미나 설명", example= "본 세미나는 인공지능 기술이 산업, 사회, 일상에 어떤 변화를 가져오는지 살펴보고 앞으로 우리가 준비해야 할 방향에 대해 논의합니다.")
+    private String description;
+
     @Schema(description = "세미나 신청 시작일", example = "2025-12-01T09:00:00")
     private LocalDateTime applyStartDate;
 
@@ -69,6 +77,12 @@ public class SeminarUpdateRequestDTO {
         @NotBlank
         @Schema(description = "연사 이력", example = "전 네이버 AI 연구원, 현 구글코리아 시니어 엔지니어")
         private String history;
+
+        @Schema(
+                description = "강연 태그 목록",
+                example = "[\"#AI\", \"#BACKEND\"]"
+        )
+        private List<String> sessionTags;
 
         @NotBlank
         @Schema(description = "강연 제목", example = "AI 윤리와 책임 있는 기술")
