@@ -165,4 +165,6 @@ public class SeminarDetailController {
 
         return ApiResponse.onSuccess("세미나 검색에 성공하였습니다.", seminarList);
     }
+
+
 }

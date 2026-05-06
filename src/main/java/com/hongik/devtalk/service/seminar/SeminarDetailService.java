@@ -96,6 +96,7 @@ public class SeminarDetailService {
 
     }
 
+
     @Transactional
     public List<SeminarSearchResponseDto> searchSeminarsByTag(String tagText) {
         if (tagText == null || tagText.isBlank()) {
